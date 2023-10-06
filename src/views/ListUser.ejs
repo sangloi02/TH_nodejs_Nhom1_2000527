@@ -1,0 +1,39 @@
+<form style="margin-left: 20px;" class="d-flex" href="">
+  <button class="btn btn-outline-success" type="submit"><a style="text-decoration: none;color: black;" href="/list-user">Create user</a></button>
+</form>
+<table class="table edittb">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Fullname</th>
+        <th scope="col">User</th>
+        <th scope="col">Password</th>
+        <th scope="col">Address</th>
+        <th scope="col">Sex</th>
+        <th scope="col">Email</th>
+        <th style="width: 15%;" scope="col">Phân Quyền (1=Admin;2=Người dùng)</th>
+        <th style="width: 20%;" scope="col">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for(let i=0;i<data.rows.length;i++){ %>
+      <tr>
+        <th scope="row"><%= i+1 %></th>
+        <td><%= data.rows[i].fullname %></td>
+        <td><%= data.rows[i].user %></td>
+        <td >*********</td>
+        <th scope="row"><%= data.rows[i].address %></th>
+        <td><%= data.rows[i].sex %></td>
+        <td><%= data.rows[i].email %></td>
+        <td><%= data.rows[i].quyen %></td>
+        <td style="width: 10%;display: flex;"><a class="btn btn-floating m-1" href="/detail-user/<%= data.rows[i].id %>" role="button"><i class="fa-solid fa-eye"></i></a>
+            <a class="btn btn-floating m-1" href="/edit-user/<%= data.rows[i].id %>" role="button"><i class="fa-solid fa-pen-to-square"></i></a>
+            <form action="/delete-user" method="post">
+              <input type="hidden" name="user" value="<%= data.rows[i].user %>">
+              <a class="btn btn-floating m-1" href="" role="button" type="submit"><button type="submit"><i class="fa-solid fa-trash"></i></button></a>
+            </form>
+        </td>
+      </tr>
+      <% }%>
+    </tbody>
+  </table>
